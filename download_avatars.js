@@ -38,15 +38,16 @@ function downloadImageByURL(url, filepath) {
   }
 
 getRepoContributors(ownerRepo, nameRepo, function(err, data) {
+  if ((ownerRepo === undefined) || (nameRepo === undefined)) {
+    console.log("You've made a mistake, try adding both a git owner and git name");
+    return;
+  }
   console.log("Avatar is downloading...");
   if (err) {
     console.log("Errors: " + err);
     return;
   }
-  if (ownerRepo || nameRepo === undefined) {
-    console.log("You've made a mistake, try adding both a git owner and git name");
-    return;
-  }
+
 
   for (var index in data) {
     var gitHubNames = data[index].login;
