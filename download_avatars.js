@@ -3,6 +3,9 @@ require('dotenv').config();
 var request = require("request");
 var fs = require("fs");
 
+var ownerRepo = process.argv[2];
+var nameRepo = process.argv[3];
+
 var GITHUB_USER = "BugleJones";
 var GITHUB_TOKEN = "dc225ff9ca7e47c3ac9c16175d3d13c6b0fdd733";
 
@@ -35,7 +38,7 @@ function downloadImageByURL(url, filepath) {
     .pipe(fs.createWriteStream(filepath));
   }
 
-getRepoContributors("jquery", "jquery", function(err, data) {
+getRepoContributors(ownerRepo, nameRepo, function(err, data) {
   console.log("Avatar is downloading...");
   if (err) {
     console.log("Errors: " + err);
@@ -45,7 +48,7 @@ getRepoContributors("jquery", "jquery", function(err, data) {
   for (var index in data) {
     var gitHubNames = data[index].login;
     var gitAvatarUrl = data[index].avatar_url;
-    var filePathUsers = "./avatars/" + gitHubNames + ".jpg"
+    var filePathUsers = "./avatars/" + gitHubNames + ".jpg";
     downloadImageByURL(gitAvatarUrl, filePathUsers);
-  };
+  }
 });
