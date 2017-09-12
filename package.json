@@ -11,13 +11,14 @@
     "url": "git+https://github.com/BugleJones/github-avatar-downloader.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Spencer Hamilton",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/BugleJones/github-avatar-downloader/issues"
   },
   "homepage": "https://github.com/BugleJones/github-avatar-downloader#readme",
   "dependencies": {
+    "dotenv": "^4.0.0",
     "request": "^2.81.0"
   }
 }
