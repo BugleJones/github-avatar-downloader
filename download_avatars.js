@@ -17,8 +17,10 @@ function getRepoContributors(repoOwner, repoName, cb) {
 };
 
   request.get(options, function(error, response, body) {
-    var data = JSON.parse(body)
-    console.log(data);
+    const data = JSON.parse(body);
+    data.forEach((repo) => {
+      console.log(repo.login, repo.avatar_url);
+    });
   });
 }
 
@@ -28,7 +30,7 @@ getRepoContributors("jquery", "jquery", function(err, result, body) {
     console.log("Errors: " + err);
     return;
   }
-  console.log("Result:", result);
+    console.log("Result:", result);
 });
 
 // console.log(options);
