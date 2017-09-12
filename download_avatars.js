@@ -1,6 +1,8 @@
 require('dotenv').config();
 
 var request = require("request");
+var fs = require("fs");
+
 var GITHUB_USER = "BugleJones";
 var GITHUB_TOKEN = "dc225ff9ca7e47c3ac9c16175d3d13c6b0fdd733";
 
@@ -24,6 +26,17 @@ function getRepoContributors(repoOwner, repoName, cb) {
   });
 }
 
+function downloadImageByURL(url, filepath) {
+  request.get(url)
+    .on("error", function (err) {
+      throw err;
+    })
+    .on("response", function (response) {
+      console.log("Response Status Code: ", response.statusCode);
+    })
+    .pipe(fs.createWriteStream('./testImage.jpg'));
+  }
+
 
 getRepoContributors("jquery", "jquery", function(err, result, body) {
   if (error) {
@@ -32,6 +45,8 @@ getRepoContributors("jquery", "jquery", function(err, result, body) {
   }
     console.log("Result:", result);
 });
+
+downloadImageByURL("https://avatars2.githubusercontent.com/u/2741?v=3&s=466", "avatars/kvirani.jpg");
 
 // console.log(options);
 //
