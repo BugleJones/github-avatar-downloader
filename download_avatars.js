@@ -44,6 +44,10 @@ getRepoContributors(ownerRepo, nameRepo, function(err, data) {
     console.log("Errors: " + err);
     return;
   }
+  if (ownerRepo || nameRepo === undefined) {
+    console.log("You've made a mistake, try adding both a git owner and git name");
+    return;
+  }
 
   for (var index in data) {
     var gitHubNames = data[index].login;
